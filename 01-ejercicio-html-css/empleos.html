@@ -24,7 +24,7 @@
             <nav class="primary-nav" aria-label="Primary">
                 <ul>
                 <a href="./index.html">Inicio</a>
-                <a href="./search.html">Empleos</a>
+                <a href="./empleos.html">Empleos</a>
                 <a href="#">Empresas</a>
                 <a href="#">Salarios</a>
                 </ul>
@@ -42,23 +42,26 @@
                 <h1>Encuentra tu próximo trabajo</h1>
                 <p class="subtitle">Explora miles de oportunidades en el sector tecnológico.</p>
                 <form class="search-bar" autocomplete="off">
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        width="24" 
-                        height="24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        stroke-width="1" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-search">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                        <path d="M21 21l-6 -6" />
-                    </svg>
+                    <label class="search-icon" for="search-input">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            width="24" 
+                            height="24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="1" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                            <path d="M21 21l-6 -6" />
+                        </svg>
+                    </label>
                     <input 
                         type="text" 
                         class="search-input" 
+                        id="search-input"
                         placeholder="Buscar trabajos, empresas o habilidades"
                     />         
                 </form>

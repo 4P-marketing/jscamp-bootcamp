@@ -564,6 +564,7 @@ h1 + p {
   border: none;
   border-radius: 0.5rem;
   padding: 0.7em 1.3rem;
+  cursor: pointer;
 }
 
 .apply-btn:hover {
@@ -603,6 +604,7 @@ h1 + p {
 .pagination-page:not(.active):hover {
   background: var(--primary-dark);
   color: var(--text-primary);
+  cursor: pointer;
 }
 
 /* Footer */
