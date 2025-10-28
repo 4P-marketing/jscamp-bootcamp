@@ -21,12 +21,27 @@
                 <h2 class="site-title">DevJobs</h2>
             </div>
             
-            <nav class="primary-nav" aria-label="Primary">
+            <!-- El atributo aria-label sirve para que los lectores de pantalla tengan mayor contexto y contenido a la hora de navegar por el sitio. El texto "Primary" tiene dos cosas a mejorar:
+             - No es descriptivo
+             - No está en el idioma del resto de contenido 
+            Lo que vamos a hacer es cambiarlo por "Navegación principal", que es descriptivo y está en el idioma correcto.
+            -->
+            <nav class="primary-nav" aria-label="Navegación principal">
+                <!-- Dentro de un `ul` debe haber para cada elemento un `li` o `ul` que lo envuelva, para identificar los elementos de la lista.
+                En este caso, usamos `li` por ser una lista de enlaces no ordenada (no es importante el orden de los links) -->
                 <ul>
-                <a href="./index.html">Inicio</a>
-                <a href="./empleos.html">Empleos</a>
-                <a href="#">Empresas</a>
-                <a href="#">Salarios</a>
+                    <li>
+                        <a href="./index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="./empleos.html">Empleos</a>
+                    </li>
+                    <li>
+                        <a href="#">Empresas</a>
+                    </li>
+                    <li>
+                        <a href="#">Salarios</a>
+                    </li>
                 </ul>
             </nav>
             
@@ -41,112 +56,180 @@
             <section class="hero">
                 <h1>Encuentra tu próximo trabajo</h1>
                 <p class="subtitle">Explora miles de oportunidades en el sector tecnológico.</p>
-                <form class="search-bar" autocomplete="off">
-                    <label class="search-icon" for="search-input">
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="24" 
-                            height="24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            stroke-width="1" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-search">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                            <path d="M21 21l-6 -6" />
-                        </svg>
-                    </label>
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        id="search-input"
-                        placeholder="Buscar trabajos, empresas o habilidades"
-                    />         
-                </form>
+                <form autocomplete="off">
+                    <div class="search-bar">
+                        <!-- Si bien tener un label asociado al input es lo ideal, cuando usamos un label es importante que tenga contenido de texto descriptivo. En estos casos lo que podemos hacer es:
+                        - Sacar el label y sustituirlo por otro tag genérico
+                        - Agregar un texto descriptivo en un `span` y ocultarlo con CSS (no con display:none, esta propiedad lo que hace es ocultar el elemento de los lectores de pantalla también)
+                        -->
+                        <div class="search-icon">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="24" 
+                                height="24" 
+                                fill="none" 
+                                aria-hidden="true" 
+                                stroke="currentColor" 
+                                stroke-width="1" 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                <path d="M21 21l-6 -6" />
+                            </svg>
+                        </div>
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            id="search-input"
+                            name="search"
+                            placeholder="Buscar trabajos, empresas o habilidades"
+                            aria-label="Buscar empleos"
+                        />         
+                    </div>
 
-                <div class="filters-row">
-                    <div class="filter-select">
-                        <div class="filter-select-box">
-                            <select>
-                                <option value="">Tecnología</option>
-                            </select>
-                            <span class="select-arrow">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="filter-select">
-                        <div class="filter-select-box">
-                            <select>
-                                <option value="">Ubicación</option>
-                            </select>
-                            <span class="select-arrow">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="filter-select">
-                        <div class="filter-select-box">
-                            <select>
-                                <option value="">Tipo de contrato</option>
-                            </select>
-                            <span class="select-arrow">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
-                            </span>
-                        </div>
-                        </div>
+                    <!-- Los filtros estaría genial que tengan:
+                    - Un `name` para identificar el campo cuando se envía el formulario
+                    - Un `id` para asociarlo con su label
+                    - Un label asociado (aunque esté oculto visualmente) para accesibilidad. Esto lo hacemos para darte un ejemplo de como sería, ya que arriba en el ejemplo anterior cambiamos la etiqueta `label` por un `div`
+                    - Una primera opción como placeholder (disabled y selected), para que el usuario lo vea con el select cerrado, pero no lo pueda seleccionar. Hay diferentes maneras, esta es una de ellas
+                    - Cada opción tiene un value que es el valor que se envía cuando se envía el formulario
+                    -->
+                    <div class="filters-row">
                         <div class="filter-select">
-                        <div class="filter-select-box">
-                            <select>
-                                <option value="">Nivel de experiencia</option>
-                            </select>
-                            <span class="select-arrow">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
-                            </span>
-                    </div>
-                    </div>
-                </div>
-            </section>
-            <h2 class="results-title">Resultados de búsqueda</h2>
+                            <label for="filter-technology" class="visually-hidden">Filtrar por tecnología</label>
+                            <div class="filter-select-box">
+                                <select id="filter-technology" name="technology">
+                                    <option value="" disabled selected>Tecnología</option>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                    <option value="react">React</option>
+                                    <option value="nodejs">Node.js</option>
+                                    <option value="angular">Angular</option>
+                                    <option value="vue">Vue.js</option>
+                                    <option value="php">PHP</option>
+                                    <option value="ruby">Ruby</option>
+                                    <option value="go">Go</option>
+                                </select>
+                                <span class="select-arrow" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+                                </span>
+                            </div>
+                        </div>
 
+                        <div class="filter-select">
+                            <label for="filter-location" class="visually-hidden">Filtrar por ubicación</label>
+                            <div class="filter-select-box">
+                                <select id="filter-location" name="location">
+                                    <option value="" disabled selected>Ubicación</option>
+                                    <option value="remoto">Remoto</option>
+                                    <option value="buenos-aires">Buenos Aires</option>
+                                    <option value="cordoba">Córdoba</option>
+                                    <option value="rosario">Rosario</option>
+                                    <option value="mendoza">Mendoza</option>
+                                    <option value="barcelona">Barcelona</option>
+                                    <option value="madrid">Madrid</option>
+                                    <option value="ciudad-mexico">Ciudad de México</option>
+                                    <option value="bogota">Bogotá</option>
+                                    <option value="santiago">Santiago</option>
+                                </select>
+                                <span class="select-arrow" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="filter-select">
+                            <label for="filter-contract" class="visually-hidden">Filtrar por tipo de contrato</label>
+                            <div class="filter-select-box">
+                                <select id="filter-contract" name="contract_type">
+                                    <option value="" disabled selected>Tipo de contrato</option>
+                                    <option value="full-time">Tiempo completo</option>
+                                    <option value="part-time">Medio tiempo</option>
+                                    <option value="freelance">Freelance</option>
+                                    <option value="internship">Pasantía</option>
+                                    <option value="contract">Por contrato</option>
+                                </select>
+                                <span class="select-arrow" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Filtro de nivel de experiencia -->
+                        <div class="filter-select">
+                            <label for="filter-experience" class="visually-hidden">Filtrar por nivel de experiencia</label>
+                            <div class="filter-select-box">
+                                <select id="filter-experience" name="experience_level">
+                                    <option value="" disabled selected>Nivel de experiencia</option>
+                                    <option value="junior">Junior (0-2 años)</option>
+                                    <option value="semi-senior">Semi Senior (2-4 años)</option>
+                                    <option value="senior">Senior (4+ años)</option>
+                                    <option value="lead">Tech Lead</option>
+                                    <option value="architect">Arquitecto</option>
+                                </select>
+                                <span class="select-arrow" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            
             <section class="jobs-list">
-                <article class="job-listing">
-                <div class="job-info">
-                    <div class="job-title">Ingeniero de Software</div>
-                    <div class="company-location">Tech Solutions Inc. | Remoto</div>
-                    <div class="job-desc">Buscamos un ingeniero de software con experiencia en desarrollo web y conocimientos en JavaScript, React y Node.js. El candidato ideal debe ser capaz de trabajar en equipo y tener buenas habilidades de comunicación.</div>
-                </div>
-                <button class="apply-btn">Aplicar</button>
-                </article>
-                
-                <article class="job-listing">
-                <div class="job-info">
-                    <div class="job-title">Analista de Datos</div>
-                    <div class="company-location">Data Driven Co. | Ciudad de México</div>
-                    <div class="job-desc">Estamos buscando un analista de datos con experiencia en el manejo de grandes conjuntos de datos y herramientas de visualización. Se requiere conocimiento en SQL, Python y R.</div>
-                </div>
-                <button class="apply-btn">Aplicar</button>
-                </article>
-                
-                <article class="job-listing">
-                <div class="job-info">
-                    <div class="job-title">Desarrollador de Aplicaciones Móviles</div>
-                    <div class="company-location">Mobile Apps Ltd. | Guadalajara</div>
-                    <div class="job-desc">Buscamos un desarrollador de aplicaciones móviles con experiencia en iOS y/o Android. El candidato debe tener conocimientos en Swift, Kotlin y el desarrollo de interfaces de usuario.</div>
-                </div>
-                <button class="apply-btn">Aplicar</button>
-                </article>
-                
-                <article class="job-listing">
-                <div class="job-info">
-                    <div class="job-title">Ingeniero de DevOps</div>
-                    <div class="company-location">Cloud Services SA | Remoto</div>
-                    <div class="job-desc">Estamos buscando un ingeniero de DevOps con experiencia en la gestión de infraestructuras en la nube, automatización de procesos y herramientas de integración continua. Se requiere conocimiento en AWS, Azure o GCP.</div>
-                </div>
-                <button class="apply-btn">Aplicar</button>
-                </article>
+                <!-- El título debe ir dentro del section, es el título de la sección. Si queda suelto, es un título que no tiene contexto -->
+                <h2 class="results-title">Resultados de búsqueda</h2>
+                <!-- Pasamos los artículos a una lista, esto es porque los artículos son elementos relacionados y la lista es un elemento que agrupa elementos relacionados -->
+                <ul class="job-list-results">
+                    <li>
+                        <article class="job-listing">
+                            <div class="job-info">
+                                <!-- Cambiamos el `div` por un `h3`. El artículo es un contenido con una estructura bien definida: título, información complementaria, descripción y una acción -->
+                                <h3 class="job-title">Ingeniero de Software</h3>
+                                <small class="company-location">Tech Solutions Inc. | Remoto</small>
+                                <!-- Siempre que haya un párrafo, lo convertimos en un `p` -->
+                                <p class="job-desc">Buscamos un ingeniero de software con experiencia en desarrollo web y conocimientos en JavaScript, React y Node.js. El candidato ideal debe ser capaz de trabajar en equipo y tener buenas habilidades de comunicación.</p>
+                            </div>
+                            <button class="apply-btn">Aplicar</button>
+                        </article>
+                    </li>
+                    
+                    <li>
+                        <article class="job-listing">
+                            <div class="job-info">
+                                <h3 class="job-title">Analista de Datos</h3>
+                                <small class="company-location">Data Driven Co. | Ciudad de México</small>
+                                <p class="job-desc">Estamos buscando un analista de datos con experiencia en el manejo de grandes conjuntos de datos y herramientas de visualización. Se requiere conocimiento en SQL, Python y R.</p>
+                            </div>
+                            <button class="apply-btn">Aplicar</button>
+                        </article>
+                    </li>
+                    
+                    <li>
+                        <article class="job-listing">
+                            <div class="job-info">
+                                <h3 class="job-title">Desarrollador de Aplicaciones Móviles</h3>
+                                <small class="company-location">Mobile Apps Ltd. | Guadalajara</small>
+                                <p class="job-desc">Buscamos un desarrollador de aplicaciones móviles con experiencia en iOS y/o Android. El candidato debe tener conocimientos en Swift, Kotlin y el desarrollo de interfaces de usuario.</p>
+                            </div>
+                            <button class="apply-btn">Aplicar</button>
+                        </article>
+                    </li>
+                    
+                    <li>
+                        <article class="job-listing">
+                            <div class="job-info">
+                                <h3 class="job-title">Ingeniero de DevOps</h3>
+                                <small class="company-location">Cloud Services SA | Remoto</small>
+                                <p class="job-desc">Estamos buscando un ingeniero de DevOps con experiencia en la gestión de infraestructuras en la nube, automatización de procesos y herramientas de integración continua. Se requiere conocimiento en AWS, Azure o GCP.</p>
+                            </div>
+                            <button class="apply-btn">Aplicar</button>
+                        </article>
+                    </li>
+                </ul>
             </section>
             <nav class="pagination" aria-label="Pagination">
                 <button class="pagination-arrow" disabled aria-label="Previous page">&lt;</button>
