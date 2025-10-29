@@ -29,12 +29,6 @@
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
-/* Si, esta clase es un poco especial 😅
-Como comentamos en /empleos.html, para ocultar algo visualmente pero mantenerlo accesible para lectores de pantalla, 
-usamos esta clase que tiene propiedades que hacen que el elemento sea invisible para los usuarios, pero accesible para los lectores de pantalla.
-Para recordar: Esto se hace de esta manera por un estándar ya, muchos frameworks css usan algo así para ocultar elementos en pantalla, pero no es la única manera.
-PD: display: none funciona, pero desaparece también para los lectores 
-*/
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -210,7 +204,6 @@ h1 + p {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  /* El tamaño de la imagen va a depender del tamaño del botón */
   width: 32px;
   height: 32px;
 }
@@ -544,7 +537,6 @@ h1 + p {
   margin-bottom: 3rem;
 }
 
-/* reseteamos los estilos de lista para que no afecten el diseño visual */
 .jobs-list ul {
   list-style: none;
   padding: 0;

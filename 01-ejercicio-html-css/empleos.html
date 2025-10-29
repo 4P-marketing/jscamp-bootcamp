@@ -20,15 +20,8 @@
                 </svg>
                 <h2 class="site-title">DevJobs</h2>
             </div>
-            
-            <!-- El atributo aria-label sirve para que los lectores de pantalla tengan mayor contexto y contenido a la hora de navegar por el sitio. El texto "Primary" tiene dos cosas a mejorar:
-             - No es descriptivo
-             - No está en el idioma del resto de contenido 
-            Lo que vamos a hacer es cambiarlo por "Navegación principal", que es descriptivo y está en el idioma correcto.
-            -->
-            <nav class="primary-nav" aria-label="Navegación principal">
-                <!-- Dentro de un `ul` debe haber para cada elemento un `li` o `ul` que lo envuelva, para identificar los elementos de la lista.
-                En este caso, usamos `li` por ser una lista de enlaces no ordenada (no es importante el orden de los links) -->
+
+            <nav class="primary-nav">
                 <ul>
                     <li>
                         <a href="./index.html">Inicio</a>
@@ -58,10 +51,6 @@
                 <p class="subtitle">Explora miles de oportunidades en el sector tecnológico.</p>
                 <form autocomplete="off">
                     <div class="search-bar">
-                        <!-- Si bien tener un label asociado al input es lo ideal, cuando usamos un label es importante que tenga contenido de texto descriptivo. En estos casos lo que podemos hacer es:
-                        - Sacar el label y sustituirlo por otro tag genérico
-                        - Agregar un texto descriptivo en un `span` y ocultarlo con CSS (no con display:none, esta propiedad lo que hace es ocultar el elemento de los lectores de pantalla también)
-                        -->
                         <div class="search-icon">
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
@@ -88,14 +77,6 @@
                             aria-label="Buscar empleos"
                         />         
                     </div>
-
-                    <!-- Los filtros estaría genial que tengan:
-                    - Un `name` para identificar el campo cuando se envía el formulario
-                    - Un `id` para asociarlo con su label
-                    - Un label asociado (aunque esté oculto visualmente) para accesibilidad. Esto lo hacemos para darte un ejemplo de como sería, ya que arriba en el ejemplo anterior cambiamos la etiqueta `label` por un `div`
-                    - Una primera opción como placeholder (disabled y selected), para que el usuario lo vea con el select cerrado, pero no lo pueda seleccionar. Hay diferentes maneras, esta es una de ellas
-                    - Cada opción tiene un value que es el valor que se envía cuando se envía el formulario
-                    -->
                     <div class="filters-row">
                         <div class="filter-select">
                             <label for="filter-technology" class="visually-hidden">Filtrar por tecnología</label>
@@ -180,17 +161,13 @@
             </section>
             
             <section class="jobs-list">
-                <!-- El título debe ir dentro del section, es el título de la sección. Si queda suelto, es un título que no tiene contexto -->
                 <h2 class="results-title">Resultados de búsqueda</h2>
-                <!-- Pasamos los artículos a una lista, esto es porque los artículos son elementos relacionados y la lista es un elemento que agrupa elementos relacionados -->
                 <ul class="job-list-results">
                     <li>
                         <article class="job-listing">
                             <div class="job-info">
-                                <!-- Cambiamos el `div` por un `h3`. El artículo es un contenido con una estructura bien definida: título, información complementaria, descripción y una acción -->
                                 <h3 class="job-title">Ingeniero de Software</h3>
                                 <small class="company-location">Tech Solutions Inc. | Remoto</small>
-                                <!-- Siempre que haya un párrafo, lo convertimos en un `p` -->
                                 <p class="job-desc">Buscamos un ingeniero de software con experiencia en desarrollo web y conocimientos en JavaScript, React y Node.js. El candidato ideal debe ser capaz de trabajar en equipo y tener buenas habilidades de comunicación.</p>
                             </div>
                             <button class="apply-btn">Aplicar</button>
