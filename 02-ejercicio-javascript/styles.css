@@ -405,7 +405,7 @@ article {
 }
 
 .jobs-listings {
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border);;
   border-radius: 1rem;
   list-style: none;
 
@@ -413,7 +413,7 @@ article {
     background: none;
     box-shadow: none;
     border-radius: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid var(--border);
     margin: 0;
 
     display: flex; /* valor original */
@@ -435,10 +435,18 @@ article {
     }
   }
 
-  li:last-child .job-listing-card {
-    border-bottom: none;
+  li:first-child .job-listing-card {
+    border-top: none;
   }
 }
+
+.jobs-empty {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  padding: 2rem;
+}
+
 
 .pagination {
   display: flex;
@@ -446,10 +454,15 @@ article {
   gap: 0.5rem;
   margin-block: 2rem;
 
-  a {
+  .pagination-pages {
     display: flex;
-    align-items: center;
+    gap: 0.5rem;
     justify-content: center;
+  }
+
+  button {
+    padding: 0;
+    background: none;
     width: 2.5rem;
     height: 2.5rem;
     text-decoration: none;
@@ -472,6 +485,11 @@ article {
       pointer-events: none;
     }
   }
+}
+
+#next-page,
+#prev-page {
+  padding-top: 4px;
 }
 
 .button-apply-job {

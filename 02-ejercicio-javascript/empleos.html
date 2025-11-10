@@ -37,7 +37,7 @@
       </nav>
 
       <a href="#" aria-label="Ir a mi perfil" title="Mi perfil">
-        <img src="https://unavatar.io/github/mdo" alt="Avatar del usuario" width="32" height="32" />
+        <img src="https://unavatar.io/github/sirlouen" alt="Avatar del usuario" width="32" height="32" />
       </a>
     </header>
 
@@ -117,11 +117,14 @@
 
         <ul class="jobs-listings">
           <!-- Aquí se insertan los empleos dinámicamente -->
+          <p class="jobs-empty" hidden>
+            No hay trabajos disponibles con estas condiciones
+          </p>
         </ul>
 
         <nav class="pagination">
-          <a
-            href="#"
+          <button
+            href="#" id="prev-page"
             aria-label="Ir a la página anterior de los resultados de búsqueda"
             title="Página anterior"
           >
@@ -138,14 +141,10 @@
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M15 6l-6 6l6 6" />
             </svg>
-          </a>
-          <a class="is-active" href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a
-            href="#"
+          </button>
+          <div class="pagination-pages"></div>
+          <button
+            href="#" id="next-page"
             aria-label="Ir a la página siguiente de los resultados de búsqueda"
             title="Página siguiente"
           >
@@ -163,7 +162,7 @@
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M9 6l6 6l-6 6" />
             </svg>
-          </a>
+          </button>
         </nav>
       </section>
     </main>
