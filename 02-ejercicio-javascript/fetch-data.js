@@ -1,10 +1,11 @@
 /* Aquí va la lógica para mostrar los resultados de búsqueda */
-const container = document.querySelector('.jobs-listings');
-const emptyState = container.querySelector('.jobs-empty');
-const paginationNav = document.querySelector('.pagination');
-const pagesContainer = paginationNav.querySelector('.pagination-pages');
-const prevButton = paginationNav.querySelector('#prev-page');
-const nextButton = paginationNav.querySelector('#next-page');
+import { $ } from './utils.js';
+
+const container = $('.jobs-listings');
+const emptyState = $('.jobs-empty');
+const pagesContainer = $('.pagination-pages');
+const prevButton = $('#prev-page');
+const nextButton = $('#next-page');
 
 const RESULTS_PER_PAGE = 3;
 

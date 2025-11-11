@@ -1,8 +1,10 @@
 /* Aquí va la lógica para filtrar los resultados de búsqueda */
-const filterLocation = document.getElementById('filter-location');
-const filterExperience = document.getElementById('filter-experience-level');
-const filterTechnology = document.getElementById('filter-technology');
-const searchInput = document.getElementById('empleos-search-input');
+import { $ } from './utils.js';
+
+const filterLocation = $('#filter-location');
+const filterExperience = $('#filter-experience-level');
+const filterTechnology = $('#filter-technology');
+const searchInput = $('#empleos-search-input');
 
 const handleFiltersChange = () => {
   const paginationState = window.jobsPagination
