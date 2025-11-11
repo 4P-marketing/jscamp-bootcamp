@@ -43,3 +43,5 @@ const renderPaginationNav = (totalPages, currentPage) => {
   $nextButton.disabled = currentPage >= totalPages;
 };
 ```
+
+Dejo la PR sin merge por si quieres ver algo más, pero el ejercicio está super completo. Si está todo correcto, ve a JSCamp, vuelve a poner el ejercicio listo para entregar y ya lo dejaremos como completado.
