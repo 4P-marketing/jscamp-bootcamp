@@ -143,7 +143,7 @@ export function SearchPage() {
 
   const title = loading
     ? `Cargando... - DevJobs`
-    : `Resultados: ${total}, Página ${currentPage} - DevJobs`
+    : `Resultados: ${total} | Página ${currentPage} | DevJobs`
 
   return (
     <main>
