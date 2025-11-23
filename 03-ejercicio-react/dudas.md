@@ -30,4 +30,4 @@
 
 ## Ejercicio extra
 
-<!-- Dudas del ejercicio extra -->
+1. He dejado algunos extras que pidió Midu en su día, como el manejo de errores en el `fetch`, el botón para resetear los filtros y el `localStorage` para persistencia de los filtros. 
