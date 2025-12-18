@@ -31,3 +31,9 @@
 ## Ejercicio extra
 
 1. He dejado algunos extras que pidió Midu en su día, como el manejo de errores en el `fetch`, el botón para resetear los filtros y el `localStorage` para persistencia de los filtros. 
+
+
+**Respuesta:**
+Hola crack! Excelente trabajo! Muy bien hecho :)
+Genial como implementaste todo, desde los puntos del ejercicio y los extras
+Enhorabuena!

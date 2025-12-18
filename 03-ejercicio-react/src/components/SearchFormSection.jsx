@@ -77,12 +77,17 @@ export function SearchFormSection ({ onTextFilter, onSelectFilter, filters, text
     clearFilters
   } = useSearchForm({ idTechnology, idLocation, idExperienceLevel, idText, onSelectFilter, onTextFilter, textToFilter, filters })
 
+  // para evitar recargar la página al hacer el submit del formulario, agregamos un preventDefault. Además, evitamos que se agreguen en la URL los parámetros del formulario por Id (lo que se asigna dentro del useId())
+  const handleSubmit = (event) => {
+    event.preventDefault()
+  }
+
   return (
     <section className="jobs-search">
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form className={styles.searchForm} id="empleos-search-form" role="search">
+      <form className={styles.searchForm} id="empleos-search-form" role="search" onSubmit={handleSubmit}>
         <div className="search-bar">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
