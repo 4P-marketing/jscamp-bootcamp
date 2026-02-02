@@ -1,11 +1,49 @@
 import { createServer } from 'node:http'
+import { uptime } from 'node:process'
+import { json } from 'node:stream/consumers'
+import { randomUUID } from 'node:crypto'
 
 process.loadEnvFile()
 
 const port = process.env.PORT || 3000
 
-const server = createServer((req, res) => {
-  // TODO: Aquí irá la lógica del servidor
+function sendJson(res, statusCode, data) {
+  res.statusCode = statusCode
+  res.writeHead(statusCode, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify(data))
+}
+
+const server = createServer(async (req, res) => {
+  const { method, url } = req
+  if (method === 'GET') {
+    if (url === '/users') {
+    return sendJson(res, 200, users)
+    } else if (url === '/health') {
+      return sendJson(res, 200, { status: 'ok', uptime: uptime() })
+    } else {
+      return sendJson(res, 404, { error: 'Ruta no encontrada' })
+    }
+  } else if (method === 'POST' ){
+    if (url === '/users') {
+      const contentType = req.headers['content-type']
+      if (!contentType || !contentType.includes('application/json')) {
+        return sendJson(res, 415, { error: 'Unsupported Media Type. Expected application/json' })
+      }
+      try {
+        const body = await json(req)
+        console.log('Nuevo usuario recibido:', body)
+        const newUser = { id: randomUUID(), ...body }
+        users.push(newUser)
+        return sendJson(res, 201, {message: "El usuario creado", user: newUser})
+      } catch (error) {
+        return sendJson(res, 400, { error: 'Invalid JSON body' })
+      }
+    } else {
+      return sendJson(res, 404, { error: 'Ruta no encontrada' })
+    }
+  } else {
+    return sendJson(res, 405, { error: 'Method Not Allowed' })
+  }
 })
 
 server.listen(port, () => {
