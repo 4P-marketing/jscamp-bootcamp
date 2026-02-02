@@ -102,6 +102,7 @@ const useFilters = () => {
     totalPages,
     currentPage,
     textToFilter,
+    filters,
     handlePageChange,
     handleSearch,
     handleTextFilter
@@ -116,6 +117,7 @@ export default function SearchPage() {
     totalPages,
     currentPage,
     textToFilter,
+    filters,
     handlePageChange,
     handleSearch,
     handleTextFilter
@@ -132,6 +134,7 @@ export default function SearchPage() {
 
       <SearchFormSection
         initialText={textToFilter}
+        initialFilters={filters}
         onSearch={handleSearch}
         onTextFilter={handleTextFilter}
       />
