@@ -6,6 +6,7 @@ import snarkdown from 'snarkdown';
 import { useState, useEffect } from "react";
 import styles from './Detail.module.css';
 import { Link } from "../components/Link";
+import { useAuthStore } from '../store/authStore.js';
 
 function JobSection ({ title, content }) {
   const html = snarkdown(content)
@@ -27,7 +28,7 @@ function JobSection ({ title, content }) {
   )
 }
 
-function DetailPageBreadCrumb ({ job }) {
+function DetailPageBreadcrumb ({ job }) {
   return (
     <div className={styles.container}>
       <nav className={styles.breadcrumb}>
@@ -55,11 +56,23 @@ function DetailPageHeader ({ job }) {
           {job.empresa} · {job.ubicacion}
         </p>
       </header>
+
+      <DetailApplyButton />
     </>
   )
 }
 
-export function JobDetail() {
+function DetailApplyButton () {
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <button disabled={!isLoggedIn} className={styles.applyButton}>
+      {isLoggedIn ? 'Aplicar ahora' : 'Inicia sesión para aplicar'}
+    </button>
+  )
+}
+
+export default function JobDetail() {
     const { id } = useParams();
 
     const [job, setJob] = useState(null);
@@ -112,7 +125,7 @@ export function JobDetail() {
 
     return (
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
-        <DetailPageBreadCrumb job={job} />
+        <DetailPageBreadcrumb job={job} />
         <DetailPageHeader job={job} />
 
         <JobSection title="Descripción del puesto" content={job.content.description} />
