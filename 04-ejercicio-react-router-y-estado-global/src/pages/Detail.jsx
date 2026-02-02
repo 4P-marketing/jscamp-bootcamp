@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import styles from './Detail.module.css';
 import { Link } from "../components/Link";
 import { useAuthStore } from '../store/authStore.js';
+import { useFavoritesStore } from '../store/favoritesStore.js';
 
 function JobSection ({ title, content }) {
   const html = snarkdown(content)
@@ -58,6 +59,7 @@ function DetailPageHeader ({ job }) {
       </header>
 
       <DetailApplyButton />
+      <DetailFavoriteButton jobId={job.id} />
     </>
   )
 }
@@ -70,6 +72,25 @@ function DetailApplyButton () {
       {isLoggedIn ? 'Aplicar ahora' : 'Inicia sesión para aplicar'}
     </button>
   )
+}
+
+function DetailFavoriteButton ( { jobId } ) {
+  const { isFavorite, toggleFavorite } = useFavoritesStore();
+  const { isLoggedIn } = useAuthStore();
+
+  if (!isLoggedIn) {
+    return null;
+  }
+  return (
+    <button
+      className={isFavorite(jobId) ? styles.unfavoriteButton : styles.favoriteButton}
+      onClick={() => toggleFavorite(jobId)}
+      aria-label={isFavorite(jobId) ? 'Eliminar de favoritos' : 'Agregar a favoritos'}
+    >
+      {isFavorite(jobId) ? '💗' : '🤍'} Guardar oferta
+    </button>
+  )
+
 }
 
 export default function JobDetail() {

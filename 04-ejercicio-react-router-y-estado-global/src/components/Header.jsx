@@ -37,11 +37,7 @@ export function Header() {
         </NavLink>
         { 
           isLoggedIn && (
-            <NavLink 
-              className={({ isActive }) => isActive ? 'nav-link-active' : undefined}
-              to="/profile">
-              Profile (💗 {favoriteJobs} )
-            </NavLink>
+            <span>Favoritos (💗 {favoriteJobs} )</span>
           )
         }
 
