@@ -13,36 +13,64 @@ function sendJson(res, statusCode, data) {
   res.end(JSON.stringify(data))
 }
 
-const server = createServer(async (req, res) => {
-  const { method, url } = req
+function filterUsers(users, name, minAge, maxAge) {
+  return users.filter(user => {
+    let isMatch = true
+    if (name) {
+      isMatch = isMatch && user.name.toLowerCase().includes(name.toLowerCase())
+    }
+    if (minAge) {
+      isMatch = isMatch && user.age >= Number(minAge)
+    }
+    if (maxAge) {
+      isMatch = isMatch && user.age <= Number(maxAge)
+    }
+    return isMatch
+  })
+}
+
+const server = createServer(async (req, res) => { 
+  const { method, url, scheme, headers } = req 
+  const protocol = scheme || 'http'
+  const { pathname, searchParams } = new URL(url, `${protocol}://${headers.host}`)
+
   if (method === 'GET') {
-    if (url === '/users') {
-    return sendJson(res, 200, users)
-    } else if (url === '/health') {
+    if (pathname === '/users') {
+      const name = searchParams.get('name')
+      const minAge = searchParams.get('minAge')
+      const maxAge = searchParams.get('maxAge')
+      const limit = Number(searchParams.get('limit')) || users.length
+      const offset = Number(searchParams.get('offset')) || 0
+      return sendJson(
+        res, 
+        200, 
+        filterUsers(users, name, minAge, maxAge).slice(offset, offset + limit)
+      )
+    } else if (pathname === '/health') {
       return sendJson(res, 200, { status: 'ok', uptime: uptime() })
     } else {
       return sendJson(res, 404, { error: 'Ruta no encontrada' })
     }
   } else if (method === 'POST' ){
-    if (url === '/users') {
+    if (pathname === '/users') {
       const contentType = req.headers['content-type']
       if (!contentType || !contentType.includes('application/json')) {
-        return sendJson(res, 415, { error: 'Unsupported Media Type. Expected application/json' })
+        return sendJson(res, 415, { error: 'Tipo no soportado. Se esperaba application/json' })
       }
       try {
         const body = await json(req)
         console.log('Nuevo usuario recibido:', body)
         const newUser = { id: randomUUID(), ...body }
         users.push(newUser)
-        return sendJson(res, 201, {message: "El usuario creado", user: newUser})
+        return sendJson(res, 201, {message: "Usuario creado", user: newUser})
       } catch (error) {
-        return sendJson(res, 400, { error: 'Invalid JSON body' })
+        return sendJson(res, 400, { error: 'JSON inválido' })
       }
     } else {
       return sendJson(res, 404, { error: 'Ruta no encontrada' })
     }
   } else {
-    return sendJson(res, 405, { error: 'Method Not Allowed' })
+    return sendJson(res, 405, { error: 'Método no permitido' })
   }
 })
 
