@@ -13,63 +13,55 @@ function JobSection ({ title, content }) {
   const html = snarkdown(content)
 
   return (
-    <section className={styles.section}>
-      <h2 className={styles.sectionTitle}>
-        {title}
-      </h2>
-
+    <>
+      <h2>{title}</h2>
       <div
-        className={`${styles.sectionContent} prose`}
+        className={styles.sectionContent}
         dangerouslySetInnerHTML={{
           __html: html
         }}
       />
-
-    </section>
+    </>
   )
 }
 
 function DetailPageBreadcrumb ({ job }) {
   return (
-    <div className={styles.container}>
-      <nav className={styles.breadcrumb}>
-        <Link 
-          href="/search"
-          className={styles.breadcrumbButton}
-        >
-          Empleos
-        </Link>
-        <span className={styles.breadcrumbSeparator}>/</span>
-        <span className={styles.breadcrumbCurrent}>{job.titulo}</span>
-      </nav>
-    </div>
+    <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
+      <div className={styles.breadcrumbItem}>
+        <Link href="/search">Empleos</Link>
+      </div>
+      <div className={styles.breadcrumbSeparator} aria-hidden="true">/</div>
+      <div className={`${styles.breadcrumbItem} ${styles.breadcrumbActive}`} aria-current="page">
+        {job.titulo}
+      </div>
+    </nav>
   )
 }
 
-function DetailPageHeader ({ job }) {
+function DetailPageHeader ({ job, isApplied, onApply }) {
   return (
-    <>
-      <header className={styles.header}>
-        <h1 className={styles.title}>
-          {job.titulo}
-        </h1>
-        <p className={styles.meta}>
+    <header className={styles.jobHeader}>
+      <div className={styles.jobHeaderTitle}>
+        <h1 className={styles.jobTitle}>{job.titulo}</h1>
+        <div className={styles.companyLocation}>
           {job.empresa} · {job.ubicacion}
-        </p>
-      </header>
-
-      <DetailApplyButton />
-      <DetailFavoriteButton jobId={job.id} />
-    </>
+        </div>
+      </div>
+      <div className={styles.jobHeaderActions}>
+        <DetailApplyButton isApplied={isApplied} onApply={onApply} />
+        <DetailFavoriteButton jobId={job.id} />
+      </div>
+    </header>
   )
 }
 
-function DetailApplyButton () {
+function DetailApplyButton ({ isApplied, onApply }) {
   const { isLoggedIn } = useAuthStore();
 
   return (
-    <button disabled={!isLoggedIn} className={styles.applyButton}>
-      {isLoggedIn ? 'Aplicar ahora' : 'Inicia sesión para aplicar'}
+    <button onClick={onApply} disabled={!isLoggedIn || isApplied} className={styles.applyBtn}>
+      {isLoggedIn ? (isApplied ? 'Aplicado' : 'Aplicar ahora') : 'Inicia sesión para aplicar'}
     </button>
   )
 }
@@ -99,7 +91,10 @@ export default function JobDetail() {
     const [job, setJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isApplied, setIsApplied] = useState(false);
     const navigate = useNavigate();
+
+    const handleApply = () => setIsApplied(true);
 
     useEffect(() => {
         fetch(`https://jscamp-api.vercel.app/api/jobs/${id}`)
@@ -145,14 +140,21 @@ export default function JobDetail() {
     }
 
     return (
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
-        <DetailPageBreadcrumb job={job} />
-        <DetailPageHeader job={job} />
-
-        <JobSection title="Descripción del puesto" content={job.content.description} />
-        <JobSection title="Responsabilidades" content={job.content.responsibilities} />
-        <JobSection title="Requisitios" content={job.content.requirements} />
-        <JobSection title="Acerca de la empresa" content={job.content.about} />
-        </div>
+        <>
+          <DetailPageBreadcrumb job={job} />
+          <main className={styles.mainBackend}>
+            <div className={styles.jobDetail}>
+              <DetailPageHeader job={job} isApplied={isApplied} onApply={handleApply} />
+              <div className={styles.jobDescription}>
+                <JobSection title="Descripción del puesto" content={job.content.description} />
+                <JobSection title="Responsabilidades" content={job.content.responsibilities} />
+                <JobSection title="Requisitos" content={job.content.requirements} />
+                <JobSection title="Acerca de la empresa" content={job.content.about} />
+              </div>
+              <hr />
+              <DetailApplyButton isApplied={isApplied} onApply={handleApply} />
+            </div>
+          </main>
+        </>
     )
 }
