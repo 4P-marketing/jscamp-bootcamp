@@ -6,6 +6,7 @@ export default function HomePage () {
   const handleSearch = (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
+    /* Está excelente usar directamente el name del input como texto, en este caso al ser único y no haber muchos a nivel de página, no hay problema. Pero siempre esta bueno usar useId() o un una constante para evitar duplicados o error de typing. Excelente trabajo! :) */
     const searchTerm = formData.get('search')
     
     const url = searchTerm
