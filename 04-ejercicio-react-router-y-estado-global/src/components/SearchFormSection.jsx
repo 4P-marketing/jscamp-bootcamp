@@ -16,6 +16,7 @@ const useSearchForm = ({
 
     const formData = new FormData(event.currentTarget)
 
+    /* Excelente! */
     if (event.target.name === idText) {
       return // ya lo manejamos en onChange
     }
