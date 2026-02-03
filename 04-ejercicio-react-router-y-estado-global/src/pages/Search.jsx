@@ -68,12 +68,20 @@ const useFilters = () => {
   useEffect(() => {
     setSearchParams((params) => {
 
-      if (textToFilter) params.set('text', textToFilter)
-      if (filters.technology) params.set('technology', filters.technology)
-      if (filters.location) params.set('type', filters.location)
-      if (filters.experienceLevel) params.set('level', filters.experienceLevel)
+      /* En caso de que removamos el valor del filtro, tenemos que eliminarlo de la URL */
+      /* Y para evitar tener que usar if/else constantemente, creamos este handler para simplificar la lectura */
+      const setParamIfExist = (name, value) => {
+        if(value) params.set(name, value)
+        else params.delete(name)
+      }
 
-      if (currentPage > 1) params.set('page', currentPage)
+      setParamIfExist('text', textToFilter)
+      setParamIfExist('technology', filters.technology)
+      setParamIfExist('type', filters.location)
+      setParamIfExist('level', filters.experienceLevel)
+
+      /* Tenemos que evaluar que sea mayor o igual a 1, sino al volver a la página 1, se quedará en la página actual */
+      if (currentPage >= 1) params.set('page', currentPage)
 
       return params
     })
