@@ -4,8 +4,14 @@ import { join } from 'node:path'
 const args = process.argv.slice(2)
 const dir = args[0] && !args[0].startsWith('--') ? args[0] : '.'
 
-if (!process.permission.has('fs.read', dir)) {
+// Genial! Me gusta como lo implementaste pidiendo permiso exclusivamente al recurso que se quiere leer.
+// Una consideración:
+// process.permission solo existe si se ejecuta con el flag --permission, por lo que si no ponemos nada, nos saldrá un error de que `has` no existe. Así que una solución es acceder a `has` con el operador `?.` para que si no existe, no lance error.
+if (!process.permission?.has('fs.read', dir)) {
     console.log('No tienes permiso para leer el directorio especificado.')
+    /* Con esto damos un poco más de contexto al usuario */
+    console.log('Para acceder a ese recurso, ejecuta el script con el flag --permission --allow-fs-read=[directorio_a_leer]')
+    
     process.exit(1)
 }
 
