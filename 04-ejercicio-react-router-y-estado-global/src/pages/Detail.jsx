@@ -25,6 +25,7 @@ function JobSection ({ title, content }) {
   )
 }
 
+/* Como solo estamos usando la propiedad `title` de job, podemos pasar directamente ese valor. Por ejemplo: { currentPageName } = que sea igual al job.title. Así lo hacemos más declarativo */
 function DetailPageBreadcrumb ({ job }) {
   return (
     <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
@@ -128,6 +129,7 @@ export default function JobDetail() {
             <h2 className={styles.errorTitle}>
                 Oferta no encontrada
             </h2>
+            {/* Muy bien resuelto! En este caso, al ser un botón con la acción de un Link, lo que podemos hacer es usar directamente un Link (componente custom nuestro). Pero muy bien usado navigate('/')! No hago el cambio porque a nivel didáctico esta bueno que esté */}
             <button
                 onClick={() => navigate('/')}
                 className={styles.errorButton}

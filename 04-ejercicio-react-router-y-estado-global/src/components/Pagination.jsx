@@ -1,6 +1,11 @@
+import { useSearchParams } from 'react-router'
 import styles from './Pagination.module.css'
+import { useRouter } from '../hooks/useRouter'
 
 export function Pagination({ currentPage = 1, totalPages = 10, onPageChange }) {
+  const {currentPath} = useRouter()
+  const [searchParams] = useSearchParams()
+
   // generar un array de páginas a mostrar
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
@@ -33,10 +38,10 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange }) {
     }
   }
 
+  /* Podemos simplificar esto usando los hooks */
   const buildPageUrl = (page) => {
-    const url = new URL(window.location)
-    url.searchParams.set('page', page)
-    return `${url.pathname}?${url.searchParams.toString()}`
+    searchParams.set('page', page)
+    return `${currentPath}?${searchParams.toString()}`
   }
 
   return (
