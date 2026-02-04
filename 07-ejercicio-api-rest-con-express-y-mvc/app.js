@@ -1,7 +1,8 @@
 import express from 'express'
 import { jobsRouter } from './routes/jobs.js'
+import { DEFAULTS } from './config.js'
 
-const PORT = 3000
+const PORT = DEFAULTS.PORT || 3000
 const app = express()
 
 app.use('/jobs', jobsRouter)
