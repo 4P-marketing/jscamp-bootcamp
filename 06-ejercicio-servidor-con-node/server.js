@@ -14,7 +14,19 @@ function sendJson(res, statusCode, data) {
 }
 
 function filterUsers(users, name, minAge, maxAge) {
-  return users.filter(user => {
+  // Podemos simplificar la lectura con una ternaria y verificando los match por separado
+  return users.filter((user) => {
+    // 1. si tenemos name, filtramos por nombre
+    const matchName = name ? user.name.toLowerCase().includes(name.toLowerCase()) : true
+    // 2. si tenemos minAge, filtramos por edad minima
+    const matchMinAge = minAge ? user.age >= Number(minAge) : true
+    // 3. si tenemos maxAge, filtramos por edad maxima
+    const matchMaxAge = maxAge ? user.age <= Number(maxAge) : true
+
+    return matchName && matchMinAge && matchMaxAge
+  })
+
+  /* return users.filter(user => {
     let isMatch = true
     if (name) {
       isMatch = isMatch && user.name.toLowerCase().includes(name.toLowerCase())
@@ -26,12 +38,13 @@ function filterUsers(users, name, minAge, maxAge) {
       isMatch = isMatch && user.age <= Number(maxAge)
     }
     return isMatch
-  })
+  }) */
 }
 
 const server = createServer(async (req, res) => { 
   const { method, url, scheme, headers } = req 
   const protocol = scheme || 'http'
+  // Está muy bien! Se puede simplificar usando la `url` y dividirla con un split por el valor `?`, pero es solo otra manera de hacerlo, si? Lo hiciste genial!
   const { pathname, searchParams } = new URL(url, `${protocol}://${headers.host}`)
 
   if (method === 'GET') {
@@ -46,12 +59,18 @@ const server = createServer(async (req, res) => {
         200, 
         filterUsers(users, name, minAge, maxAge).slice(offset, offset + limit)
       )
-    } else if (pathname === '/health') {
-      return sendJson(res, 200, { status: 'ok', uptime: uptime() })
-    } else {
-      return sendJson(res, 404, { error: 'Ruta no encontrada' })
     }
-  } else if (method === 'POST' ){
+    
+    // No hace falta usar else if, ya que si entra al `if`, termina la ejecución por el return
+    if (pathname === '/health') {
+      return sendJson(res, 200, { status: 'ok', uptime: uptime() })
+    }
+    
+    return sendJson(res, 404, { error: 'Ruta no encontrada' })
+  } 
+  
+  // No hace falta el else if, por la misma razón que en el GET. Si entra en el GET, termina la ejecución por el return
+  if (method === 'POST' ){
     if (pathname === '/users') {
       const contentType = req.headers['content-type']
       if (!contentType || !contentType.includes('application/json')) {
@@ -66,12 +85,13 @@ const server = createServer(async (req, res) => {
       } catch (error) {
         return sendJson(res, 400, { error: 'JSON inválido' })
       }
-    } else {
-      return sendJson(res, 404, { error: 'Ruta no encontrada' })
     }
-  } else {
-    return sendJson(res, 405, { error: 'Método no permitido' })
+
+    // Si no entra en /users, termina la ejecución por el return de aquí, no hace falta el else
+    return sendJson(res, 404, { error: 'Ruta no encontrada' })
   }
+
+  return sendJson(res, 405, { error: 'Método no permitido' })
 })
 
 server.listen(port, () => {
