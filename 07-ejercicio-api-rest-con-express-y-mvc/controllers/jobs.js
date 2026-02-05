@@ -26,17 +26,17 @@ export class JobController {
   }
 
   static async create(req, res) {
-    const { titulo, empresa, ubicacion, data } = req.body
-    const newJob = await JobModel.create({ titulo, empresa, ubicacion, data })
+    const { titulo, empresa, ubicacion, descripcion, data, content } = req.body
+    const newJob = await JobModel.create({ titulo, empresa, ubicacion, descripcion, data, content })
 
     return res.status(201).json(newJob)
   }
 
   static async update(req, res) {
     const { id } = req.params
-    const { titulo, empresa, ubicacion, data } = req.body
+    const { titulo, empresa, ubicacion, descripcion, data, content } = req.body
 
-    const updatedJob = await JobModel.update(id, { titulo, empresa, ubicacion, data })
+    const updatedJob = await JobModel.update(id, { titulo, empresa, ubicacion, descripcion, data, content })
 
     if (!updatedJob) {
       return res.status(404).json({ error: 'Job not found' })
@@ -47,9 +47,9 @@ export class JobController {
 
   static async partialUpdate(req, res) {
     const { id } = req.params
-    const { titulo, empresa, ubicacion, data } = req.body
+    const { titulo, empresa, ubicacion, descripcion, data, content } = req.body
 
-    const partiallyUpdatedJob = await JobModel.partialUpdate(id, { titulo, empresa, ubicacion, data })
+    const partiallyUpdatedJob = await JobModel.partialUpdate(id, { titulo, empresa, ubicacion, descripcion, data, content })
 
     if (!partiallyUpdatedJob) {
       return res.status(404).json({ error: 'Job not found' })
