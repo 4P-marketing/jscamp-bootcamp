@@ -1,0 +1,5 @@
+export const DEFAULTS = {
+  LIMIT_PAGINATION: 10,
+  OFFSET_PAGINATION: 0,
+  PORT: 5432,
+}
