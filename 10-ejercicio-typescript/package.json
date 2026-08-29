@@ -1,0 +1,11 @@
+{
+  "name": "typescript-jobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": ""
+}
