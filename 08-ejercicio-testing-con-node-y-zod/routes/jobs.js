@@ -37,7 +37,7 @@ jobsRouter.get('/:id', JobController.getId)
 
 jobsRouter.post('/', validateCreate, JobController.create)
 
-jobsRouter.put('/:id', JobController.update)
+jobsRouter.put('/:id', validateCreate, JobController.update)
 
 jobsRouter.patch('/:id', validatePartialUpdate, JobController.partialUpdate)
 
