@@ -47,6 +47,8 @@ export interface JobFilters {
   tech?: string
   modality?: JobData['modality']
   level?: JobData['level']
+  limit?: string
+  offset?: string
 }
 
 // ================================
