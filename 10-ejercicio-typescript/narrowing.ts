@@ -1,14 +1,16 @@
 /* En este ejercicio deberás tipar las funciones con los tipos ya creados. Ten en cuenta que los tipos de experiencia son literales, por lo que tendrás que corregir el código para que funcione correctamente. */
 
+import type { Job, Candidate } from './objects.ts'
+
 // Validar candidato para un empleo
-export function isQualified(candidate: any, job: any): any {
+export function isQualified(candidate: Candidate, job: Job): boolean {
   // Verificar años de experiencia
   const requiredYears =
-    job.experienceLevel === 'junlor'
+    job.experienceLevel === 'junior'
       ? 0
-      : job.experienceLevel === 'mib'
+      : job.experienceLevel === 'mid'
         ? 2
-        : job.experienceLevel === 'seni0r'
+        : job.experienceLevel === 'senior'
           ? 5
           : 8
 
@@ -17,13 +19,13 @@ export function isQualified(candidate: any, job: any): any {
   }
 
   // Verificar si tiene al menos una tecnología requerida
-  const hasRequiredSkill = job.technologies.some((tech: any) => candidate.skills.includes(tech))
+  const hasRequiredSkill = job.technologies.some((tech) => candidate.skills.includes(tech))
 
   return hasRequiredSkill
 }
 
 // Función con type guards - formatear salario
-export function formatSalary(salary: any): string {
+export function formatSalary(salary?: number): string {
   if (salary === undefined) {
     return 'Salario no especificado'
   }
@@ -32,7 +34,7 @@ export function formatSalary(salary: any): string {
 }
 
 // Validar email
-export function isValidEmail(email: any): any {
+export function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }

@@ -1,6 +1,8 @@
 /* Aquí deberás definir los tipos Job y Candidate creados en objects.ts para los arrays dados */
 
-export const jobs = [
+import type { Job, Company, Candidate } from './objects.ts'
+
+export const jobs: Job[] = [
   {
     id: '1',
     title: 'Frontend Developer',
@@ -8,7 +10,7 @@ export const jobs = [
     location: 'Madrid',
     description: 'Buscamos desarrollador frontend con experiencia en React',
     salary: 45000,
-    technologies: ['react', 'typescript', 'tailwind'],
+    technologies: ['react', 'typescript', 'javascript'],
     experienceLevel: 'mid',
     workMode: 'hibrido',
     isActive: true,
@@ -42,7 +44,7 @@ export const jobs = [
   },
 ]
 
-export const companies = [
+export const companies: Company[] = [
   {
     id: '1',
     name: 'Midudev S.A',
@@ -69,12 +71,12 @@ export const companies = [
   },
 ]
 
-export const candidates = [
+export const candidates: Candidate[] = [
   {
     id: '1',
     name: 'Ana García',
     email: 'ana@example.com',
-    skills: ['react', 'javascript', 'css'],
+    skills: ['react', 'javascript', 'typescript'],
     experienceYears: 3,
   },
   {
@@ -89,7 +91,7 @@ export const candidates = [
     id: '3',
     name: 'María López',
     email: 'maria@example.com',
-    skills: ['react', 'typescript', 'tailwind', 'node'],
+    skills: ['react', 'typescript', 'javascript', 'node'],
     experienceYears: 4,
   },
 ]
