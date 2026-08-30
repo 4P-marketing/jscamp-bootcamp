@@ -1,0 +1,162 @@
+[
+  {
+    "id": "7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4",
+    "title": "Desarrollador de Software Senior",
+    "company": "Tech Solutions Inc.",
+    "location": "Remoto",
+    "description": "Buscamos un ingeniero de software con experiencia en desarrollo web y conocimientos en JavaScript, React y Node.js. El candidato ideal debe ser capaz de trabajar en equipo y tener buenas habilidades de comunicación.",
+    "modality": "remote",
+    "level": "senior",
+    "technologies": ["react", "node", "javascript"],
+    "content": {
+      "description": "Tech Solutions Inc. está buscando un Ingeniero de Software Senior altamente motivado y experimentado para unirse a nuestro equipo remoto. El candidato ideal tendrá una sólida formación en desarrollo de software, con experiencia en el diseño, desarrollo e implementación de soluciones de software escalables y de alto rendimiento. Como Ingeniero de Software Senior, usted será responsable de liderar proyectos de desarrollo, mentorizar a ingenieros junior y colaborar con equipos multifuncionales para entregar productos de software de alta calidad.",
+      "responsibilities": "- Diseñar, desarrollar y mantener aplicaciones web utilizando tecnologías modernas.\n- Colaborar con equipos de producto y diseño para definir y entregar nuevas características.\n- Escribir código limpio, eficiente y bien documentado.\n- Realizar revisiones de código y proporcionar retroalimentación constructiva a los miembros del equipo.\n- Mentorizar ingenieros junior y guiar su desarrollo profesional.\n- Participar en reuniones de planificación y retrospectivas del equipo.\n- Mantenerse actualizado con las últimas tendencias y mejores prácticas en desarrollo de software.",
+      "requirements": "- Licenciatura en Informática o campo relacionado.\n- Mínimo de 5 años de experiencia en desarrollo de software.\n- Experiencia con frameworks de JavaScript (por ejemplo, React, Angular, Vue.js).\n- Familiaridad con metodologías ágiles y herramientas de control de versiones (por ejemplo, Git).\n- Excelentes habilidades de comunicación y capacidad para trabajar en equipo.\n- Capacidad demostrada para resolver problemas complejos y pensar de manera crítica.",
+      "about": "Tech Solutions Inc. es una empresa de tecnología innovadora que se centra en la creación de soluciones de software de vanguardia para diversas industrias. Estamos comprometidos con el fomento de un entorno de trabajo colaborativo e inclusivo donde cada empleado pueda prosperar y crecer profesionalmente. Ofrecemos salarios competitivos, beneficios integrales y oportunidades de desarrollo profesional continuo."
+    }
+  },
+  {
+    "id": "d35b2c89-5d60-4f26-b19a-6cfb2f1a0f57",
+    "title": "Analista de Datos",
+    "company": "Data Driven Co.",
+    "location": "Ciudad de México",
+    "description": "Estamos buscando un analista de datos con experiencia en el manejo de grandes conjuntos de datos y herramientas de visualización. Se requiere conocimiento en SQL, Python y R.",
+    "modality": "onsite",
+    "level": "junior",
+    "technologies": ["python", "sql", "r", "pandas"],
+    "content": {
+      "description": "Data Driven Co. está en busca de un Analista de Datos para unirse a nuestro equipo en Ciudad de México. Esta posición es ideal para profesionales que están comenzando su carrera en análisis de datos y desean trabajar con grandes volúmenes de información para generar insights valiosos que impulsen decisiones de negocio.",
+      "responsibilities": "- Recolectar, procesar y analizar grandes conjuntos de datos para identificar patrones y tendencias.\n- Crear visualizaciones e informes utilizando herramientas como Tableau o Power BI.\n- Colaborar con diferentes departamentos para entender sus necesidades de datos.\n- Escribir consultas SQL eficientes para extraer y transformar datos.\n- Desarrollar scripts en Python o R para automatizar análisis recurrentes.\n- Presentar hallazgos y recomendaciones a stakeholders no técnicos.",
+      "requirements": "- Título universitario en Estadística, Matemáticas, Ciencias de la Computación o campo relacionado.\n- Conocimiento sólido en SQL para consultas de bases de datos.\n- Experiencia con Python (Pandas, NumPy) o R para análisis de datos.\n- Familiaridad con herramientas de visualización de datos.\n- Capacidad analítica y atención al detalle.\n- Buenas habilidades de comunicación para explicar resultados técnicos.",
+      "about": "Data Driven Co. es una empresa líder en soluciones de análisis de datos que ayuda a organizaciones a tomar decisiones basadas en información. Ofrecemos un ambiente de aprendizaje continuo, oportunidades de crecimiento profesional y la posibilidad de trabajar con tecnologías de vanguardia en el campo del análisis de datos."
+    }
+  },
+  {
+    "id": "e31f9a92-61d7-4b7a-b3a2-91e8c1f40b2d",
+    "title": "Desarrollador de Aplicaciones Móviles",
+    "company": "Mobile Apps Ltd.",
+    "location": "Guadalajara",
+    "description": "Buscamos un desarrollador de aplicaciones móviles con experiencia en iOS y/o Android. El candidato debe tener conocimientos en Swift, Kotlin y el desarrollo de interfaces de usuario.",
+    "modality": "onsite",
+    "level": "mid",
+    "technologies": ["swift", "kotlin", "react-native", "flutter"],
+    "content": {
+      "description": "Mobile Apps Ltd. busca un Desarrollador de Aplicaciones Móviles con experiencia en crear aplicaciones nativas y multiplataforma. Trabajarás en proyectos diversos que impactan a millones de usuarios, desarrollando soluciones móviles innovadoras y de alto rendimiento.",
+      "responsibilities": "- Desarrollar aplicaciones móviles nativas para iOS utilizando Swift o Android con Kotlin.\n- Implementar interfaces de usuario atractivas y funcionales siguiendo guías de diseño.\n- Integrar APIs RESTful y servicios backend en las aplicaciones móviles.\n- Optimizar el rendimiento de las aplicaciones para diferentes dispositivos.\n- Participar en revisiones de código y pruebas de calidad.\n- Mantenerse actualizado con las últimas tendencias en desarrollo móvil.",
+      "requirements": "- Experiencia demostrable desarrollando aplicaciones móviles (iOS o Android).\n- Dominio de Swift para iOS o Kotlin para Android.\n- Conocimientos en frameworks multiplataforma como React Native o Flutter.\n- Comprensión de principios de diseño UI/UX móvil.\n- Experiencia con control de versiones (Git).\n- Portafolio de aplicaciones publicadas en App Store o Google Play es un plus.",
+      "about": "Mobile Apps Ltd. es una empresa especializada en desarrollo de aplicaciones móviles que ha creado soluciones para clientes en diversos sectores. Valoramos la creatividad, la innovación y el trabajo en equipo. Ofrecemos un ambiente dinámico donde los desarrolladores pueden crecer profesionalmente y trabajar con las últimas tecnologías móviles."
+    }
+  },
+  {
+    "id": "f62d8a34-923a-4ac2-9b0b-14e0ac2f5405",
+    "title": "Ingeniero de DevOps",
+    "company": "Cloud Services SA",
+    "location": "Remoto",
+    "description": "Estamos buscando un ingeniero de DevOps con experiencia en la gestión de infraestructuras en la nube, automatización de procesos y herramientas de integración continua. Se requiere conocimiento en AWS, Azure o GCP.",
+    "modality": "remote",
+    "level": "mid",
+    "technologies": ["aws", "azure", "gcp", "docker", "kubernetes", "terraform"],
+    "content": {
+      "description": "Cloud Services SA busca un Ingeniero de DevOps para gestionar y optimizar nuestra infraestructura cloud. Serás responsable de implementar prácticas de CI/CD, automatizar despliegues y garantizar la alta disponibilidad de nuestros sistemas en producción.",
+      "responsibilities": "- Diseñar, implementar y mantener infraestructura cloud en AWS, Azure o GCP.\n- Desarrollar y mantener pipelines de CI/CD para automatizar despliegues.\n- Gestionar contenedores con Docker y orquestarlos con Kubernetes.\n- Implementar infraestructura como código usando Terraform o CloudFormation.\n- Monitorear sistemas y resolver incidencias de producción.\n- Optimizar costos y rendimiento de la infraestructura cloud.\n- Colaborar con equipos de desarrollo para mejorar procesos de entrega.",
+      "requirements": "- Experiencia práctica con al menos una plataforma cloud (AWS, Azure o GCP).\n- Conocimiento sólido de Docker y Kubernetes.\n- Experiencia con herramientas de IaC como Terraform o Ansible.\n- Familiaridad con herramientas de CI/CD (Jenkins, GitLab CI, GitHub Actions).\n- Habilidades en scripting (Bash, Python).\n- Comprensión de redes, seguridad y mejores prácticas cloud.\n- Certificaciones cloud son un plus.",
+      "about": "Cloud Services SA es una empresa líder en soluciones cloud que ayuda a organizaciones a migrar y optimizar sus infraestructuras. Trabajamos con tecnologías de vanguardia y ofrecemos un entorno de trabajo flexible y remoto, con oportunidades de certificación y desarrollo profesional continuo."
+    }
+  },
+  {
+    "id": "a9f31a8e-ec38-4fd3-9114-88cc6d37a92b",
+    "title": "Diseñador UX/UI",
+    "company": "Creative Minds Studio",
+    "location": "Barcelona",
+    "description": "Estamos buscando un diseñador UX/UI con pasión por crear experiencias digitales excepcionales. Se requiere experiencia en Figma, diseño centrado en el usuario y colaboración con equipos de desarrollo.",
+    "modality": "onsite",
+    "level": "mid",
+    "technologies": ["figma", "sketch", "adobe-xd", "prototyping"],
+    "content": {
+      "description": "Creative Minds Studio busca un Diseñador UX/UI creativo y orientado al detalle para crear interfaces intuitivas y visualmente atractivas. Trabajarás en proyectos innovadores, desde la conceptualización hasta la entrega final.",
+      "responsibilities": "- Crear wireframes, prototipos y diseños de alta fidelidad utilizando Figma.\n- Realizar investigación de usuarios y pruebas de usabilidad.\n- Diseñar interfaces centradas en el usuario para aplicaciones web y móviles.\n- Colaborar estrechamente con desarrolladores para asegurar la correcta implementación.\n- Mantener y evolucionar sistemas de diseño y guías de estilo.\n- Presentar conceptos de diseño a stakeholders y clientes.",
+      "requirements": "- Portfolio sólido que demuestre experiencia en diseño UX/UI.\n- Dominio de Figma y conocimientos de otras herramientas como Sketch o Adobe XD.\n- Experiencia en metodologías de diseño centrado en el usuario.\n- Comprensión de principios de diseño visual, tipografía y teoría del color.\n- Capacidad para crear prototipos interactivos.\n- Excelentes habilidades de comunicación y presentación.",
+      "about": "Creative Minds Studio es un estudio de diseño digital en Barcelona especializado en crear experiencias excepcionales para marcas innovadoras. Fomentamos la creatividad, la colaboración y el crecimiento profesional en un ambiente inspirador."
+    }
+  },
+  {
+    "id": "c1b65b42-68c5-4f1c-a8c2-8d52c5a7a5d1",
+    "title": "Administrador de Bases de Datos",
+    "company": "Secure Data Corp.",
+    "location": "Buenos Aires",
+    "description": "Se busca un administrador de bases de datos con experiencia en PostgreSQL y MySQL. El candidato deberá asegurar la disponibilidad, seguridad y rendimiento de las bases de datos de producción.",
+    "modality": "onsite",
+    "level": "mid",
+    "technologies": ["postgresql", "mysql", "mongodb", "redis"],
+    "content": {
+      "description": "Secure Data Corp. busca un Administrador de Bases de Datos experimentado para gestionar y optimizar nuestros sistemas de bases de datos críticos. Serás responsable de garantizar la integridad, disponibilidad y seguridad de los datos de la empresa.",
+      "responsibilities": "- Administrar y mantener bases de datos PostgreSQL y MySQL en entornos de producción.\n- Implementar estrategias de backup y recuperación ante desastres.\n- Monitorear rendimiento de bases de datos y optimizar consultas.\n- Gestionar seguridad de bases de datos, usuarios y permisos.\n- Planificar y ejecutar actualizaciones y migraciones de bases de datos.\n- Resolver incidencias críticas relacionadas con bases de datos.\n- Documentar procedimientos y configuraciones.",
+      "requirements": "- Experiencia sólida en administración de PostgreSQL y MySQL.\n- Conocimiento de bases de datos NoSQL como MongoDB o Redis.\n- Experiencia con scripts de automatización (Bash, Python).\n- Comprensión de replicación, clustering y alta disponibilidad.\n- Conocimientos de seguridad de bases de datos y mejores prácticas.\n- Capacidad para trabajar bajo presión y resolver problemas críticos.",
+      "about": "Secure Data Corp. es una empresa especializada en soluciones de gestión de datos seguros para empresas de diversos sectores. Ofrecemos un ambiente profesional con oportunidades de crecimiento y certificaciones en tecnologías de bases de datos."
+    }
+  },
+  {
+    "id": "bb8f2a99-6a20-4f9e-912a-16f54a49b8c3",
+    "title": "Especialista en Ciberseguridad",
+    "company": "SafeNet Solutions",
+    "location": "Remoto",
+    "description": "Buscamos un especialista en ciberseguridad con conocimientos en protección de infraestructuras, análisis de vulnerabilidades y respuesta ante incidentes. Se valorará experiencia con SIEM y certificaciones de seguridad.",
+    "modality": "remote",
+    "level": "mid",
+    "technologies": ["siem", "penetration-testing", "firewall", "security-tools"],
+    "content": {
+      "description": "SafeNet Solutions busca un Especialista en Ciberseguridad para proteger nuestros sistemas y datos contra amenazas. Trabajarás en la implementación de medidas de seguridad, análisis de riesgos y respuesta a incidentes de seguridad.",
+      "responsibilities": "- Monitorear y analizar eventos de seguridad utilizando herramientas SIEM.\n- Realizar evaluaciones de vulnerabilidades y pruebas de penetración.\n- Implementar y gestionar soluciones de seguridad (firewalls, IDS/IPS).\n- Responder a incidentes de seguridad y realizar investigaciones forenses.\n- Desarrollar y mantener políticas y procedimientos de seguridad.\n- Mantenerse actualizado sobre amenazas emergentes y tendencias de seguridad.\n- Capacitar al personal en mejores prácticas de seguridad.",
+      "requirements": "- Experiencia en ciberseguridad y gestión de riesgos.\n- Conocimiento de herramientas SIEM y análisis de logs.\n- Experiencia con pruebas de penetración y evaluación de vulnerabilidades.\n- Familiaridad con frameworks de seguridad (NIST, ISO 27001).\n- Certificaciones como CEH, CISSP o CompTIA Security+ son valoradas.\n- Habilidades analíticas y capacidad para resolver problemas complejos.",
+      "about": "SafeNet Solutions es una empresa líder en servicios de ciberseguridad que ayuda a organizaciones a proteger sus activos digitales. Ofrecemos un entorno de trabajo remoto flexible, oportunidades de certificación y desarrollo profesional continuo en el campo de la seguridad informática."
+    }
+  },
+  {
+    "id": "fe7b2c54-4f47-4e2b-9e87-2b5413a6b24f",
+    "title": "Product Manager",
+    "company": "NextGen Technologies",
+    "location": "Madrid",
+    "description": "Estamos buscando un Product Manager con experiencia en la definición y lanzamiento de productos digitales. Se requiere capacidad analítica, liderazgo y conocimiento en metodologías ágiles.",
+    "modality": "onsite",
+    "level": "senior",
+    "technologies": ["agile", "scrum", "jira", "analytics", "product-strategy"],
+    "content": {
+      "description": "NextGen Technologies busca un Product Manager senior para liderar el desarrollo y lanzamiento de productos digitales innovadores. Serás responsable de definir la visión del producto, trabajar con stakeholders y guiar equipos multifuncionales.",
+      "responsibilities": "- Definir y comunicar la visión y estrategia del producto.\n- Gestionar el backlog y priorizar features basadas en valor de negocio.\n- Colaborar con equipos de desarrollo, diseño y marketing.\n- Realizar investigación de mercado y análisis competitivo.\n- Analizar métricas de producto y tomar decisiones basadas en datos.\n- Planificar y coordinar lanzamientos de producto.\n- Recopilar feedback de usuarios y stakeholders.",
+      "requirements": "- Experiencia demostrada como Product Manager de productos digitales.\n- Sólido conocimiento de metodologías ágiles (Scrum, Kanban).\n- Habilidades analíticas y experiencia con herramientas de analytics.\n- Excelentes habilidades de comunicación y liderazgo.\n- Capacidad para tomar decisiones basadas en datos.\n- Experiencia con herramientas como Jira, Confluence.\n- Título universitario en negocios, tecnología o campo relacionado.",
+      "about": "NextGen Technologies es una empresa innovadora que desarrolla productos digitales de vanguardia. Valoramos el liderazgo, la innovación y el pensamiento estratégico. Ofrecemos un ambiente dinámico con oportunidades de crecimiento y desarrollo profesional."
+    }
+  },
+  {
+    "id": "a71f7a92-56d9-4b42-9f16-cb29b40e5f2c",
+    "title": "Frontend Developer",
+    "company": "Bright Web Studio",
+    "location": "Valencia",
+    "description": "Buscamos un desarrollador frontend con experiencia en React, TypeScript y Tailwind CSS. Se valorará conocimiento en optimización de rendimiento y accesibilidad web.",
+    "modality": "onsite",
+    "level": "mid",
+    "technologies": ["react", "typescript", "tailwind", "css"],
+    "content": {
+      "description": "Bright Web Studio busca un Frontend Developer con experiencia en tecnologías modernas para crear interfaces web atractivas y de alto rendimiento. Trabajarás en proyectos diversos que requieren atención al detalle y excelencia técnica.",
+      "responsibilities": "- Desarrollar y mantener aplicaciones web utilizando React y TypeScript.\n- Implementar diseños responsivos con Tailwind CSS.\n- Optimizar aplicaciones para máximo rendimiento y escalabilidad.\n- Garantizar accesibilidad web siguiendo estándares WCAG.\n- Colaborar con diseñadores y desarrolladores backend.\n- Escribir código limpio, mantenible y bien documentado.\n- Participar en code reviews y mejora continua.",
+      "requirements": "- Experiencia sólida con React y TypeScript.\n- Dominio de Tailwind CSS y CSS moderno.\n- Conocimientos de optimización de rendimiento web.\n- Familiaridad con accesibilidad web (a11y).\n- Experiencia con Git y workflows de desarrollo colaborativo.\n- Comprensión de principios de diseño responsivo.\n- Conocimientos de herramientas de build (Vite, Webpack).",
+      "about": "Bright Web Studio es un estudio web en Valencia especializado en crear experiencias web excepcionales. Ofrecemos un ambiente creativo y colaborativo donde los desarrolladores pueden crecer profesionalmente y trabajar en proyectos desafiantes."
+    }
+  },
+  {
+    "id": "f91e4c7b-3840-43da-8ad7-3a52e2a8cf1d",
+    "title": "Backend Developer",
+    "company": "APIWorks",
+    "location": "Bogotá",
+    "description": "Estamos buscando un desarrollador backend con experiencia en Node.js, Express y bases de datos NoSQL. Se requiere conocimiento en arquitectura de microservicios.",
+    "modality": "onsite",
+    "level": "mid",
+    "technologies": ["node", "express", "mongodb", "microservices"],
+    "content": {
+      "description": "APIWorks busca un Backend Developer con experiencia en Node.js para desarrollar APIs robustas y escalables. Trabajarás en arquitecturas de microservicios y sistemas distribuidos de alto rendimiento.",
+      "responsibilities": "- Diseñar y desarrollar APIs RESTful utilizando Node.js y Express.\n- Implementar lógica de negocio en arquitectura de microservicios.\n- Trabajar con bases de datos NoSQL, especialmente MongoDB.\n- Optimizar rendimiento de consultas y operaciones de base de datos.\n- Implementar autenticación, autorización y seguridad en APIs.\n- Escribir pruebas unitarias e integración.\n- Documentar APIs y código.",
+      "requirements": "- Experiencia sólida con Node.js y Express.\n- Conocimiento profundo de JavaScript/TypeScript.\n- Experiencia con MongoDB y bases de datos NoSQL.\n- Comprensión de arquitectura de microservicios.\n- Familiaridad con APIs RESTful y principios de diseño.\n- Experiencia con control de versiones (Git).\n- Conocimientos de contenedores (Docker) es un plus.",
+      "about": "APIWorks es una empresa especializada en desarrollo de APIs y soluciones backend escalables. Ofrecemos un ambiente profesional con oportunidades de trabajar en proyectos desafiantes utilizando tecnologías modernas."
+    }
+  }
+]
