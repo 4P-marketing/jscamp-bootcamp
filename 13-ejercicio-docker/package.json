@@ -1,0 +1,23 @@
+{
+  "name": "13-ejercicio-docker",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Ejercicio final del módulo de DevOps y Docker",
+  "scripts": {
+    "01:por-que:node22": "docker build -t por-que-node22 01-por-que && docker run --rm por-que-node22",
+    "01:por-que:node16": "docker build -t por-que-node16 01-por-que && docker run --rm por-que-node16",
+    "02:hola:build": "docker build -t hola-docker 02-hola-docker",
+    "02:hola:run": "docker run --rm hola-docker",
+    "03:node-web:build": "docker build -t midu-web 03-node-web",
+    "03:node-web:run": "docker run --rm -p 3000:3000 --name midu-web midu-web",
+    "04:init": "cd 04-docker-init && docker init",
+    "05:multi-stage:build": "docker build -t midu-mini 05-multi-stage",
+    "05:multi-stage:run": "docker run --rm -p 3000:3000 --name midu-mini midu-mini",
+    "06:volumenes:build": "docker build -t midu-visitas 06-volumenes",
+    "06:volumenes:run": "docker run --rm -p 3000:3000 --name midu-visitas midu-visitas",
+    "07:ia:build": "docker build -t midu-ia 07-ia-OPCIONAL",
+    "07:ia:run": "docker run --rm -p 5000:5000 --name midu-ia midu-ia",
+    "08:vercel:build": "docker build -f 08-vercel-OPCIONAL/Dockerfile.vercel -t midu-vercel 08-vercel-OPCIONAL",
+    "08:vercel:run": "docker run --rm -p 8080:80 --name midu-vercel midu-vercel"
+  }
+}
