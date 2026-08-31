@@ -2,6 +2,7 @@
   "name": "jscamp-cicd-exercise",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "dev:frontend": "pnpm --filter @jscamp-ci/frontend dev",
     "dev:backend": "pnpm --filter @jscamp-ci/backend dev",
