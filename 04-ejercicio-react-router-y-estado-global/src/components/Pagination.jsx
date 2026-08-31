@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router'
-import styles from './Pagination.module.css'
 import { useRouter } from '../hooks/useRouter'
+import styles from './Pagination.module.css'
 
 export function Pagination({ currentPage = 1, totalPages = 10, onPageChange }) {
   const {currentPath} = useRouter()
@@ -46,7 +46,7 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange }) {
 
   return (
     <nav className={styles.pagination}>
-      <a href={buildPageUrl(currentPage - 1)} style={stylePrevButton} onClick={handlePrevClick}>
+      <a href={buildPageUrl(currentPage - 1)} aria-label="Anterior" style={stylePrevButton} onClick={handlePrevClick}>
         <svg
           width="16"
           height="16"
@@ -74,7 +74,8 @@ export function Pagination({ currentPage = 1, totalPages = 10, onPageChange }) {
         </a>
       ))}
 
-      <a href={buildPageUrl(currentPage + 1)} style={styleNextButton} onClick={handleNextClick}>
+      {/* Agregamos aria-label para mejorar la experiencia en accesibilidad y en los tests */}
+      <a href={buildPageUrl(currentPage + 1)} aria-label="Siguiente" style={styleNextButton} onClick={handleNextClick}>
         <svg
           width="16"
           height="16"
