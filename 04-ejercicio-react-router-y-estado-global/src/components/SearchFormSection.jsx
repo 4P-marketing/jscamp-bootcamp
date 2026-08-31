@@ -1,4 +1,4 @@
-import { useId, useState, useRef } from 'react'
+import { useId, useRef, useState } from 'react'
 
 const useSearchForm = ({
   idTechnology,
@@ -113,7 +113,8 @@ export function SearchFormSection({ onTextFilter, onSearch, initialText, initial
         </div>
 
         <div className="search-filters">
-          <select name={idTechnology} id="filter-technology" defaultValue={initialFilters.technology || ''}>
+          {/* Agregamos aria-label para mejorar la experiencia en accesibilidad y aria-label */}
+          <select name={idTechnology} id="filter-technology" aria-label="Tecnología" defaultValue={initialFilters.technology || ''}>
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -131,7 +132,7 @@ export function SearchFormSection({ onTextFilter, onSearch, initialText, initial
             <option value="php">PHP</option>
           </select>
 
-          <select name={idLocation} id="filter-location" defaultValue={initialFilters.location || ''}>
+          <select name={idLocation} id="filter-location" aria-label="Ubicación" defaultValue={initialFilters.location || ''}>
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -140,7 +141,7 @@ export function SearchFormSection({ onTextFilter, onSearch, initialText, initial
             <option value="barcelona">Barcelona</option>
           </select>
 
-          <select name={idExperienceLevel} id="filter-experience-level" defaultValue={initialFilters.experienceLevel || ''}>
+          <select name={idExperienceLevel} id="filter-experience-level" aria-label="Nivel de experiencia" defaultValue={initialFilters.experienceLevel || ''}>
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>

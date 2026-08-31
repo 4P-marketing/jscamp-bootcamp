@@ -1,5 +1,5 @@
 // @ts-check
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 
 // Test de navegación básica
@@ -35,7 +35,8 @@ test('un usuario puede aplicar a una oferta', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Buscar' }).click()
 
-  const jobCards = page.locator('.job-listing-card')
+  // getByRole('article') usa el rol ARIA del <article> de cada oferta: más robusto que la clase CSS. Siempre tenemos que evitar obtener elementos por medio de selectores débiles, como lo es clases de CSS
+  const jobCards = page.getByRole('article')
 
   await expect(jobCards.first()).toBeVisible()
 
@@ -59,11 +60,12 @@ test('un usuario puede aplicar a una oferta', async ({ page }) => {
 test('los filtros permiten filtrar empleos', async ({ page }) => {
   await page.goto('http://localhost:5173/search')
 
-  const jobCards = page.locator('.job-listing-card')
+  const jobCards = page.getByRole('article')
   await expect(jobCards.first()).toBeVisible()
 
   // 1. Filtrar por ubicación
-  const locationFilter = page.locator('#filter-location')
+  // getByLabel usa el aria-label del <select>, si no podemos capturar por getByRole, usaremos getByLabel
+  const locationFilter = page.getByLabel('Ubicación')
   await locationFilter.selectOption('remoto')
 
   await expect(page).toHaveURL(/type=remoto/)
@@ -74,20 +76,23 @@ test('los filtros permiten filtrar empleos', async ({ page }) => {
   }
 
   // 2. Filtrar por nivel
-  const levelFilter = page.locator('#filter-experience-level')
+  const levelFilter = page.getByLabel('Nivel de experiencia')
   await levelFilter.selectOption('senior')
 
   await expect(page).toHaveURL(/level=senior/)
 
-  const firstJobTitle = jobCards.first().locator('h3')
-  await expect(firstJobTitle).toHaveText('Desarrollador de Software Senior')
+  // Verificamos que TODOS los resultados son Senior con el atributo data-nivel del <article>
+  const countSenior = await jobCards.count()
+  for (let i = 0; i < countSenior; i++) {
+    await expect(jobCards.nth(i)).toHaveAttribute('data-nivel', 'senior')
+  }
 })
 
 // Test de paginación
 test('la paginación permite navegar entre páginas de resultados', async ({ page }) => {
   await page.goto('http://localhost:5173/search')
 
-  const jobCards = page.locator('.job-listing-card')
+  const jobCards = page.getByRole('article')
   await expect(jobCards.first()).toBeVisible()
 
   // 1. Verificar que aparece paginación si hay más de x resultados
@@ -98,7 +103,9 @@ test('la paginación permite navegar entre páginas de resultados', async ({ pag
   await expect(firstJobTitle).toHaveText('Desarrollador de Software Senior')
 
   // 2. Navegar a la siguiente página
-  const nextButton = pagination.getByRole('link').last()
+  // Modificamos el archivo de `04-ejercicio-react-router-y-estado-global/src/components/Pagination.jsx` para que use el nombre accesible de "Siguiente". Con esto mejoramos la accesibilidad y por ende el test.
+  // Hay algo importante: Es linealmente proporcional el tener una buena accesibilidad y un buen sistema de tests. Cuanto más accesible es nuestra aplicación, más robusto y fácil y mantenible es nuestro test
+  const nextButton = pagination.getByRole('link', { name: 'Siguiente' })
   await nextButton.click()
 
   await expect(page).toHaveURL(/page=2/)
@@ -110,7 +117,7 @@ test('la paginación permite navegar entre páginas de resultados', async ({ pag
 test('el detalle de un empleo permite aplicar a la oferta', async ({ page }) => {
   await page.goto('http://localhost:5173/search')
 
-  const jobCards = page.locator('.job-listing-card')
+  const jobCards = page.getByRole('article')
   await expect(jobCards.first()).toBeVisible()
 
   // 1. Verificar que se muestra el detalle de un empleo
