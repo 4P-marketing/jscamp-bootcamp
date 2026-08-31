@@ -1,0 +1,82 @@
+name: 05 - CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  frontend-lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Lint
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Lint"
+          pnpm lint:frontend
+          echo "::endgroup::"
+
+  frontend-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Test
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Test"
+          pnpm test:frontend
+          echo "::endgroup::"
+
+  frontend-build:
+    needs: [frontend-lint, frontend-test]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Build
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Build"
+          pnpm build:frontend
+          echo "::endgroup::"
+
+  backend-lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Lint
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Lint"
+          pnpm lint:backend
+          echo "::endgroup::"
+
+  backend-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Test
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Test"
+          pnpm test:backend
+          echo "::endgroup::"
+
+  backend-build:
+    needs: [backend-lint, backend-test]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-pnpm-ci-cd
+      - name: Build
+        run: |
+          cd 12-ejercicio-cicd
+          echo "::group::Build"
+          pnpm build:backend
+          echo "::endgroup::"
