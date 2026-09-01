@@ -16,6 +16,7 @@ on:
 
       environment:
         description: "Entorno"
+        required: true
         type: environment
 
       dry_run:
