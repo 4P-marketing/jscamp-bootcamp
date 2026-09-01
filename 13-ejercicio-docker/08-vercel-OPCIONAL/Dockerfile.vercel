@@ -1,0 +1,10 @@
+# Etapa builder
+FROM golang:1.24-alpine AS builder
+WORKDIR /src
+COPY . .
+RUN go build -o /server main.go
+
+# Etapa runner
+FROM alpine:3.20 AS runner
+COPY --from=builder /server /server
+CMD ["/server"]
