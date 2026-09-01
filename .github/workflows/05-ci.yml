@@ -9,24 +9,29 @@ on:
 jobs:
   frontend-lint:
     runs-on: ubuntu-24.04
+    # Esto es una alternativa a hacer `cd 12-ejercicio-cicd`. Algunas veces tiene sentido. En este caso por más que si conlleva más código con respecto a la versión con `cd`, queda más claro hacia donde estamos apuntando nuestro job. Ambas formas están bien: hicimos esto para darte una alternativa :)
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Lint
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Lint"
           pnpm lint:frontend
           echo "::endgroup::"
 
   frontend-test:
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Test
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Test"
           pnpm test:frontend
           echo "::endgroup::"
@@ -34,36 +39,42 @@ jobs:
   frontend-build:
     needs: [frontend-lint, frontend-test]
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Build
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Build"
           pnpm build:frontend
           echo "::endgroup::"
 
   backend-lint:
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Lint
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Lint"
           pnpm lint:backend
           echo "::endgroup::"
 
   backend-test:
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Test
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Test"
           pnpm test:backend
           echo "::endgroup::"
@@ -71,12 +82,14 @@ jobs:
   backend-build:
     needs: [backend-lint, backend-test]
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
       - name: Build
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Build"
           pnpm build:backend
           echo "::endgroup::"
@@ -87,6 +100,9 @@ jobs:
         os: [ubuntu-24.04, macos-latest, windows-latest]
         node: ['22', '24']
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: 12-ejercicio-cicd
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-pnpm-ci-cd
@@ -95,7 +111,6 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          cd 12-ejercicio-cicd
           echo "::group::Test"
           pnpm test:frontend
           echo "::endgroup::"
