@@ -1,7 +1,7 @@
 import crypto from 'node:crypto'
 import { db } from '../db/database'
 
-import type { Job, JobData, JobContent, CreateJobDTO, UpdateJobDTO, JobFilters } from '../types'
+import type { CreateJobDTO, Job, JobContent, JobData, JobFilters, UpdateJobDTO } from '../types'
 
 interface JobRow {
   id: string
@@ -17,10 +17,13 @@ interface JobRow {
 export class JobModel {
   // Obtener todos los jobs con filtros opcionales
   static async getAll(filters?: JobFilters): Promise<Job[]> {
+    // Pasamos de JOIN a LEFT JOIN.
+    // Con JOIN normal, un job sin tecnologías registradas desaparecería del listado; LEFT JOIN lo mantiene (hace que technologies queda en null).
     let query = `
       SELECT j.*, GROUP_CONCAT(jt.technology) AS technologies
       FROM jobs j
-      JOIN job_technologies jt ON j.id = jt.job_id
+      -- JOIN job_technologies jt ON j.id = jt.job_id
+      LEFT JOIN job_technologies jt ON j.id = jt.job_id
     `
 
     const conditions: string[] = []
@@ -66,7 +69,10 @@ export class JobModel {
       location: row.location,
       description: row.description,
       data: {
-        technology: row.technologies.split(','),
+        // Cmo hicimos un LEFT JOIN, technologies puede llegar null si el job no tiene tecnologías:
+        // Así que agregamos ?. para evita el error y ?? devuelve un array vacío en caso de que venga como null
+        // technology: row.technologies.split(','),
+        technology: row.technologies?.split(',') ?? [],
         modality: row.modality,
         level: row.level
       }
@@ -99,7 +105,8 @@ export class JobModel {
       location: row.location,
       description: row.description,
       data: {
-        technology: row.technologies.split(','),
+        // technology: row.technologies.split(','),
+        technology: row.technologies?.split(',') ?? [],
         modality: row.modality,
         level: row.level
       },
@@ -114,38 +121,44 @@ export class JobModel {
       ...input
     }
 
-    db.prepare(`
-      INSERT INTO jobs (id, title, company, location, description, modality, level)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(
-      newJob.id, 
-      newJob.title, 
-      newJob.company, 
-      newJob.location, 
-      newJob.description, 
-      newJob.data.modality, 
-      newJob.data.level
-    )
-
-    const insertTechnology = db.prepare('INSERT INTO job_technologies (job_id, technology) VALUES (?, ?)')
-
-    newJob.data.technology.forEach(technology => {
-      insertTechnology.run(newJob.id, technology)
-    })
-
-    if (newJob.content) {
+    // Pasamos los 3 INSERT de job, tecnologías y content dentro de una transacción.
+    // Si uno fallaba en algún punto, sin la transacción quedan datos corrompidos en la BD.
+    const insertAll = db.transaction(() => {
       db.prepare(`
-        INSERT INTO job_content (job_id, description, id, responsibilities, requirements, about)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO jobs (id, title, company, location, description, modality, level)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
       `).run(
         newJob.id,
-        newJob.content.description,
-        crypto.randomUUID(),
-        newJob.content.responsibilities,
-        newJob.content.requirements, 
-        newJob.content.about
+        newJob.title,
+        newJob.company,
+        newJob.location,
+        newJob.description,
+        newJob.data.modality,
+        newJob.data.level
       )
-    }
+
+      const insertTechnology = db.prepare('INSERT INTO job_technologies (job_id, technology) VALUES (?, ?)')
+
+      newJob.data.technology.forEach(technology => {
+        insertTechnology.run(newJob.id, technology)
+      })
+
+      if (newJob.content) {
+        db.prepare(`
+          INSERT INTO job_content (job_id, description, id, responsibilities, requirements, about)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `).run(
+          newJob.id,
+          newJob.content.description,
+          crypto.randomUUID(),
+          newJob.content.responsibilities,
+          newJob.content.requirements,
+          newJob.content.about
+        )
+      }
+    })
+
+    insertAll()
 
     return newJob
   }
@@ -185,27 +198,47 @@ export class JobModel {
     )
 
     if (input.data) {
-      db.prepare('DELETE FROM job_technologies WHERE job_id = ?').run(id)
+      // Lo mismo, borramos y reinsertamos dentro de una transacción para evitar información corrompida dentro de la BD.
+      const replaceTechnologies = db.transaction(() => {
+        db.prepare('DELETE FROM job_technologies WHERE job_id = ?').run(id)
 
-      const insertTechnology = db.prepare('INSERT INTO job_technologies (job_id, technology) VALUES (?, ?)')
+        const insertTechnology = db.prepare('INSERT INTO job_technologies (job_id, technology) VALUES (?, ?)')
 
-      updatedJob.data.technology.forEach(technology => {
-        insertTechnology.run(id, technology)
+        updatedJob.data.technology.forEach(technology => {
+          insertTechnology.run(id, technology)
+        })
       })
+
+      replaceTechnologies()
     }
 
     if (input.content) {
-      db.prepare(`
-        UPDATE job_content
-        SET description = ?, responsibilities = ?, requirements = ?, about = ?
-        WHERE job_id = ?
-      `).run(
-        input.content.description,
-        input.content.responsibilities,
-        input.content.requirements,
-        input.content.about,
-        id
-      )
+      // Lo que hacemos es revisar si hay `content` y en caso de que exista, actualizamos, sino insertamos.
+      if (currentJob.content) {
+        db.prepare(`
+          UPDATE job_content
+          SET description = ?, responsibilities = ?, requirements = ?, about = ?
+          WHERE job_id = ?
+        `).run(
+          input.content.description,
+          input.content.responsibilities,
+          input.content.requirements,
+          input.content.about,
+          id
+        )
+      } else {
+        db.prepare(`
+          INSERT INTO job_content (job_id, description, id, responsibilities, requirements, about)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `).run(
+          id,
+          input.content.description,
+          crypto.randomUUID(),
+          input.content.responsibilities,
+          input.content.requirements,
+          input.content.about
+        )
+      }
     }
 
     return updatedJob
